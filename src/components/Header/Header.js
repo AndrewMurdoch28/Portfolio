@@ -125,11 +125,11 @@ function Header() {
           window.innerWidth < 800 ? (dropdownHeader ? "280px" : "0px") : "55px",
       }}
     >
-      <img
+      {/* <img
         className="signature"
         src="signature.png"
         onClick={navigateToStart}
-      ></img>
+      ></img> */}
       <div
         ref={burgerRef}
         onMouseEnter={() => {

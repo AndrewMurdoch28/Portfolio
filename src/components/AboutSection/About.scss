@@ -1,5 +1,8 @@
+$grey-color: grey;
+$grey-border: rgba(grey, 0.5);
+
 .class {
-  font-family: Consolas;
+  font-family: Consolas, Monaco, "Courier New", monospace;
   font-size: 20px;
 }
 
@@ -14,9 +17,11 @@
   height: auto;
   border-bottom: 1px solid transparent;
   border-top: 1px solid transparent;
+  transition: border-color 0.2s ease;
+
   &:hover {
-    border-bottom: 1px solid rgba($color: grey, $alpha: 0.5);
-    border-top: 1px solid rgba($color: grey, $alpha: 0.5);
+    border-bottom: 1px solid $grey-border;
+    border-top: 1px solid $grey-border;
   }
 }
 
@@ -27,9 +32,11 @@
   padding-bottom: 2.5px;
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   width: calc(70vw + 30px);
+
   .lineNum {
-    color: grey;
+    color: $grey-color;
     font-weight: 100;
     left: -70px;
     position: absolute;
@@ -65,85 +72,86 @@
 }
 
 .dot {
-  color: grey;
+  color: $grey-color;
   line-height: 23px;
   margin-left: 4px;
   margin-right: 4px;
   font-size: 10px;
 }
 
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
 .flashingCursor {
-  position: absolute;
+  display: inline-block;
   margin-left: 5px;
-  margin-top: 3px;
-  background-color: var(--fontColor);
+  background-color: var(--fontColor, #fff);
   height: 18px;
   width: 1.5px;
   animation: flashingCursor 0.9s ease infinite;
+  vertical-align: middle;
 }
 
 @keyframes flashingCursor {
-  0% {
+  0%,
+  100% {
     opacity: 0;
   }
   50% {
     opacity: 1;
   }
-  100% {
-    opacity: 0;
-  }
 }
 
 @media (max-width: 900px) {
   .class {
-    font-family: Consolas;
     font-size: 2.5vw;
   }
 
   .dot {
-    color: grey;
     line-height: 1.5vw;
-    margin-left: 4px;
-    margin-right: 4px;
     font-size: 2vw;
   }
 
   .codeLineContainer {
-    position: relative;
     left: calc(-8vw - 30px);
-    width: 100vw;
-    height: auto;
-    border-bottom: 1px solid transparent;
-    border-top: 1px solid transparent;
+
     &:hover {
-      border-bottom: 1px solid rgba($color: grey, $alpha: 0.5);
-      border-top: 1px solid rgba($color: grey, $alpha: 0.5);
+      border-bottom: 1px solid $grey-border;
+      border-top: 1px solid $grey-border;
     }
   }
 
   .codeLine {
-    position: relative;
     left: calc(8vw + 30px);
-    padding-top: 2.5px;
-    padding-bottom: 2.5px;
-    display: flex;
-    flex-wrap: wrap;
     width: calc(75vw + 30px);
+
     .lineNum {
-      color: grey;
-      font-weight: 100;
       left: calc(-5vw - 25px);
-      position: absolute;
     }
   }
 
   .flashingCursor {
-    position: absolute;
-    margin-left: 5px;
-    margin-top: 3px;
-    background-color: var(--fontColor);
     height: 2vw;
-    width: 1.5px;
-    animation: flashingCursor 0.9s ease infinite;
+  }
+}
+
+@media (max-width: 600px) {
+  .class {
+    font-size: 3vw;
+  }
+
+  .dot {
+    font-size: 2.5vw;
+  }
+
+  .space {
+    margin-right: 6px;
+  }
+
+  .flashingCursor {
+    height: 2.5vw;
   }
 }
