@@ -19,24 +19,11 @@ function About() {
   }, []);
 
   const skills = [
-    "Vue.js",
-    "AngularJS",
-    "React",
-    "Node.js",
-    "Adonis.js",
-    "PostgreSQL",
-    "AWS",
-    "Azure DevOps",
-    "Docker",
-    "CI/CD",
-    "TypeScript",
-    "Socket.io",
-    "Git",
-    "Jest",
-    "Prowler",
-    "Casbín",
-    "LeafletJS",
-    "VBA",
+    'JavaScript', 'TypeScript', 'Vue.js', 'React', 'AngularJS', 'Node.js', 
+    'Express', 'PostgreSQL', 'AWS RDS', 'AWS Lambda', 'AWS Amplify', 
+    'AWS Cognito', 'Docker', 'Azure DevOps', 'CI/CD', 'Git', 'Agile/Scrum', 
+    'Casbin', 'Auth.js', 'Prowler', 'Socket.io', 'LeafletJS', 'Jest', 
+    'OOP', 'Database Design', 'VBA'
   ];
 
   return (
@@ -75,7 +62,7 @@ function About() {
         <span>.</span>
         <span className="lightBlueFont space">email</span>
         <span className="space">=</span>
-        <span className="orangeFont">{"'andrewmurdoch28@gmail.com'"}</span>
+        <span className="orangeFont">{"'andrewmurdoch88@gmail.com'"}</span>
         <span>;</span>
       </CodeLine>
 
@@ -116,8 +103,7 @@ function About() {
         <span className="orangeFont">'2018-2022'</span>
         <span className="space">:</span>
         <span className="orangeFont space">
-          'Ontario Tech University - Bachelor of Science (Honours), Computer
-          Science'
+          'Ontario Tech University - Bachelor of Science, Computer Science'
         </span>
         <span className="yellowFont">{"}"}</span>
       </CodeLine>
@@ -147,172 +133,240 @@ function About() {
       <CodeLine lineNum="17" indent={4}>
         <span className="orangeFont">'role'</span>
         <span className="space">:</span>
-        <span className="orangeFont space">'Junior Full Stack Developer'</span>
+        <span className="orangeFont space">'Full Stack Developer (Contract)'</span>
         <span>,</span>
       </CodeLine>
 
       <CodeLine lineNum="18" indent={4}>
         <span className="orangeFont">'organization'</span>
         <span className="space">:</span>
-        <span className="orangeFont space">'RCAF - Ottawa, ON'</span>
+        <span className="orangeFont space">'Oxaro / RCAF Association'</span>
         <span>,</span>
       </CodeLine>
 
       <CodeLine lineNum="19" indent={4}>
         <span className="orangeFont">'period'</span>
         <span className="space">:</span>
-        <span className="orangeFont space">'June 2024 - March 2025'</span>
+        <span className="orangeFont space">'June 2024 - Present'</span>
         <span>,</span>
       </CodeLine>
 
       <CodeLine lineNum="20" indent={4}>
-        <span className="orangeFont">'highlights'</span>
+        <span className="orangeFont">'projects'</span>
         <span className="space">:</span>
         <span className="blueFont space">{"["}</span>
       </CodeLine>
 
       <CodeLine lineNum="21" indent={5}>
-        <span className="orangeFont">
-          'Designed full-stack application using Vue 3, Node.js, PostgreSQL'
-        </span>
+        <span className="yellowFont space">{"{"}</span>
+      </CodeLine>
+
+      <CodeLine lineNum="22" indent={6}>
+        <span className="orangeFont">'name'</span>
+        <span className="space">:</span>
+        <span className="orangeFont space">'Canadian Beacon Registry (CBR)'</span>
         <span>,</span>
       </CodeLine>
 
-      <CodeLine lineNum="22" indent={5}>
-        <span className="orangeFont">
-          'Implemented CI/CD pipelines with Azure DevOps'
-        </span>
+      <CodeLine lineNum="23" indent={6}>
+        <span className="orangeFont">'description'</span>
+        <span className="space">:</span>
+        <span className="orangeFont space">'Critical search and rescue system for COSPAS-SARSAT'</span>
         <span>,</span>
       </CodeLine>
 
-      <CodeLine lineNum="23" indent={5}>
-        <span className="orangeFont">
-          'Containerized application using Docker'
-        </span>
+      <CodeLine lineNum="24" indent={6}>
+        <span className="orangeFont">'highlights'</span>
+        <span className="space">:</span>
+        <span className="blueFont space">{"["}</span>
+      </CodeLine>
+
+      <CodeLine lineNum="25" indent={7}>
+        <span className="orangeFont">'Built serverless AWS apps with React, Lambda, Cognito'</span>
         <span>,</span>
       </CodeLine>
 
-      <CodeLine lineNum="24" indent={5}>
-        <span className="orangeFont">
-          'Built real-time data processing with Socket.io and LeafletJS'
-        </span>
+      <CodeLine lineNum="26" indent={7}>
+        <span className="orangeFont">'Designed comprehensive ER data model using AWS RDS'</span>
+        <span>,</span>
       </CodeLine>
 
-      <CodeLine lineNum="25" indent={4}>
+      <CodeLine lineNum="27" indent={7}>
+        <span className="orangeFont">'Led complete refactoring of legacy codebase'</span>
+        <span>,</span>
+      </CodeLine>
+
+      <CodeLine lineNum="28" indent={7}>
+        <span className="orangeFont">'Managed complex data migration from legacy system'</span>
+      </CodeLine>
+
+      <CodeLine lineNum="29" indent={6}>
         <span className="blueFont">{"]"}</span>
       </CodeLine>
 
-      <CodeLine lineNum="26" indent={3}>
+      <CodeLine lineNum="30" indent={5}>
         <span className="yellowFont">{"}"}</span>
         <span>,</span>
       </CodeLine>
 
-      <CodeLine lineNum="27" indent={3}>
+      <CodeLine lineNum="31" indent={5}>
         <span className="yellowFont space">{"{"}</span>
       </CodeLine>
 
-      <CodeLine lineNum="28" indent={4}>
+      <CodeLine lineNum="32" indent={6}>
+        <span className="orangeFont">'name'</span>
+        <span className="space">:</span>
+        <span className="orangeFont space">'RCAF Operational Scheduling Application'</span>
+        <span>,</span>
+      </CodeLine>
+
+      <CodeLine lineNum="33" indent={6}>
+        <span className="orangeFont">'description'</span>
+        <span className="space">:</span>
+        <span className="orangeFont space">'Full-stack scheduling system for critical operations'</span>
+        <span>,</span>
+      </CodeLine>
+
+      <CodeLine lineNum="34" indent={6}>
+        <span className="orangeFont">'highlights'</span>
+        <span className="space">:</span>
+        <span className="blueFont space">{"["}</span>
+      </CodeLine>
+
+      <CodeLine lineNum="35" indent={7}>
+        <span className="orangeFont">'Built with Vue 3, Node.js, PostgreSQL'</span>
+        <span>,</span>
+      </CodeLine>
+
+      <CodeLine lineNum="36" indent={7}>
+        <span className="orangeFont">'Real-time updates with Socket.io and LeafletJS'</span>
+        <span>,</span>
+      </CodeLine>
+
+      <CodeLine lineNum="37" indent={7}>
+        <span className="orangeFont">'Implemented CI/CD with Azure DevOps and Docker'</span>
+        <span>,</span>
+      </CodeLine>
+
+      <CodeLine lineNum="38" indent={7}>
+        <span className="orangeFont">'Security scanning tool with AngularJS and Prowler'</span>
+      </CodeLine>
+
+      <CodeLine lineNum="39" indent={6}>
+        <span className="blueFont">{"]"}</span>
+      </CodeLine>
+
+      <CodeLine lineNum="40" indent={5}>
+        <span className="yellowFont">{"}"}</span>
+      </CodeLine>
+
+      <CodeLine lineNum="41" indent={4}>
+        <span className="blueFont">{"]"}</span>
+      </CodeLine>
+
+      <CodeLine lineNum="42" indent={3}>
+        <span className="yellowFont">{"}"}</span>
+        <span>,</span>
+      </CodeLine>
+
+      <CodeLine lineNum="43" indent={3}>
+        <span className="yellowFont space">{"{"}</span>
+      </CodeLine>
+
+      <CodeLine lineNum="44" indent={4}>
         <span className="orangeFont">'role'</span>
         <span className="space">:</span>
-        <span className="orangeFont space">'Junior Software Developer'</span>
+        <span className="orangeFont space">'Software Developer'</span>
         <span>,</span>
       </CodeLine>
 
-      <CodeLine lineNum="29" indent={4}>
+      <CodeLine lineNum="45" indent={4}>
         <span className="orangeFont">'organization'</span>
         <span className="space">:</span>
-        <span className="orangeFont space">'RCAF - Trenton, ON'</span>
+        <span className="orangeFont space">'RCAF Association'</span>
         <span>,</span>
       </CodeLine>
 
-      <CodeLine lineNum="30" indent={4}>
+      <CodeLine lineNum="46" indent={4}>
         <span className="orangeFont">'period'</span>
         <span className="space">:</span>
         <span className="orangeFont space">'January 2024 - June 2024'</span>
         <span>,</span>
       </CodeLine>
 
-      <CodeLine lineNum="31" indent={4}>
+      <CodeLine lineNum="47" indent={4}>
         <span className="orangeFont">'highlights'</span>
         <span className="space">:</span>
         <span className="blueFont space">{"["}</span>
       </CodeLine>
 
-      <CodeLine lineNum="32" indent={5}>
-        <span className="orangeFont">
-          'Built aircraft maintenance planning system using VBA'
-        </span>
+      <CodeLine lineNum="48" indent={5}>
+        <span className="orangeFont">'Built Excel-based aircraft maintenance planning system using VBA'</span>
         <span>,</span>
       </CodeLine>
 
-      <CodeLine lineNum="33" indent={5}>
-        <span className="orangeFont">
-          'Developed automated data processing pipelines'
-        </span>
+      <CodeLine lineNum="49" indent={5}>
+        <span className="orangeFont">'Translated aviation business logic into performant code'</span>
         <span>,</span>
       </CodeLine>
 
-      <CodeLine lineNum="34" indent={5}>
-        <span className="orangeFont">
-          'Optimized system performance through algorithmic improvements'
-        </span>
+      <CodeLine lineNum="50" indent={5}>
+        <span className="orangeFont">'Optimized scheduling algorithms to minimize aircraft downtime'</span>
+        <span>,</span>
       </CodeLine>
 
-      <CodeLine lineNum="35" indent={4}>
+      <CodeLine lineNum="51" indent={5}>
+        <span className="orangeFont">'Delivered project on schedule within 6-month timeframe'</span>
+      </CodeLine>
+
+      <CodeLine lineNum="52" indent={4}>
         <span className="blueFont">{"]"}</span>
       </CodeLine>
 
-      <CodeLine lineNum="36" indent={3}>
+      <CodeLine lineNum="53" indent={3}>
         <span className="yellowFont">{"}"}</span>
       </CodeLine>
 
-      <CodeLine lineNum="37" indent={2}>
+      <CodeLine lineNum="54" indent={2}>
         <span className="blueFont">{"]"}</span>
       </CodeLine>
 
-      <CodeLine lineNum="38" indent={1}>
+      <CodeLine lineNum="55" indent={1}>
         <span className="pinkFont">{"}"}</span>
       </CodeLine>
 
-      <CodeLine lineNum="39" indent={1}>
+      <CodeLine lineNum="56" indent={1}>
         <span className="yellowFont">skills</span>
         <span className="pinkFont">{"() {"}</span>
       </CodeLine>
 
-      <CodeLine lineNum="40" indent={2}>
+      <CodeLine lineNum="57" indent={2}>
         <span className="pinkFont space">return</span>
-        <span className="blueFont space">{"["}</span>
+        <span className="blueFont">{"["}</span>
       </CodeLine>
 
-      {skills.map((skill, index) => (
-        <CodeLine
-          key={skill}
-          lineNum={String(41 + index).padStart(2, "0")}
-          indent={3}
-        >
-          <span className="orangeFont">'{skill}'</span>
-          {index < skills.length - 1 && <span>,</span>}
-          {index === skills.length - 1 && (
-            <span className="flashingCursor"></span>
-          )}
-        </CodeLine>
-      ))}
+      {skills.map((skill, index) => {
+        const lineNum = 58 + index;
+        const isLast = index === skills.length - 1;
+        
+        return (
+          <CodeLine key={skill} lineNum={String(lineNum).padStart(2, "0")} indent={3}>
+            <span className="orangeFont">'{skill}'</span>
+            {!isLast && <span>,</span>}
+            {isLast && <span className="flashingCursor"></span>}
+          </CodeLine>
+        );
+      })}
 
-      <CodeLine
-        lineNum={String(41 + skills.length).padStart(2, "0")}
-        indent={2}
-      >
-        <span className="blueFont space">{"]"}</span>
+      <CodeLine lineNum={String(58 + skills.length).padStart(2, "0")} indent={2}>
+        <span className="blueFont">{"]"}</span>
       </CodeLine>
 
-      <CodeLine
-        lineNum={String(42 + skills.length).padStart(2, "0")}
-        indent={1}
-      >
+      <CodeLine lineNum={String(59 + skills.length).padStart(2, "0")} indent={1}>
         <span className="pinkFont">{"}"}</span>
       </CodeLine>
 
-      <CodeLine lineNum={String(43 + skills.length).padStart(2, "0")}>
+      <CodeLine lineNum={String(60 + skills.length).padStart(2, "0")}>
         <span className="yellowFont">{"}"}</span>
       </CodeLine>
     </div>
