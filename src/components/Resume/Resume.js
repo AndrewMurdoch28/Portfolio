@@ -61,6 +61,102 @@ function Resume() {
     }, 100);
   };
 
+  const handleExportText = () => {
+    const textContent = `
+ANDREW MURDOCH
+Colborne, Ontario
+289-829-0575
+andrewmurdoch28@gmail.com
+linkedin.com/in/andrew-murdoch-601354143
+
+================================================================================
+SUMMARY
+================================================================================
+
+Results-oriented Full Stack Developer with 2+ years of experience delivering mission-critical software solutions for the RCAF and Department of National Defence. Proven track record in designing and deploying comprehensive full-stack applications, managing complex database architectures, and implementing secure, scalable systems in mixed civilian-military environments. Skilled in translating intricate operational requirements into performant code, leveraging modern technologies including React, Vue.js, Node.js, AWS, and Azure DevOps.
+
+================================================================================
+PROFESSIONAL EXPERIENCE
+================================================================================
+
+FULL STACK DEVELOPER (CONTRACT)
+Oxaro / RCAF Association - Ottawa, Ontario (Remote)
+June 2024 - Present
+
+Canadian Beacon Registry (CBR) System Development:
+  • Developing the Canadian Beacon Registry (CBR), a critical search and rescue system used by the Canadian Mission Control Centre at CFB Trenton as part of the international COSPAS-SARSAT satellite system
+  • Designed and implemented comprehensive Entity-Relationship data model using AWS RDS, creating an Owner Groups structure with one-to-many relationships to Beacons, Aircraft, Vessels, PLB Usages, and Emergency Contacts
+  • Led complete refactoring of inherited half-baked codebase, transforming overcomplicated and buggy application into maintainable, scalable solution following object-oriented programming principles
+  • Developed two serverless AWS applications (public-facing portal and admin console) using React, AWS Amplify, AWS Lambda, AWS Cognito, and other AWS services
+  • Implemented Agile SDLC methodology with daily scrums and sprint-based development, maintaining responsive collaboration with military stakeholders through Azure DevOps
+  • Project scheduled for December 2025 deployment, replacing unreliable legacy system and improving search and rescue response capabilities
+
+RCAF Operational Scheduling Application Development:
+  • Designed and deployed comprehensive full-stack scheduling application for critical RCAF operational network using Vue 3, Node.js, and PostgreSQL
+  • Developed real-time data processing and visualization tools using Socket.io and LeafletJS, enabling dynamic updates and geospatial awareness
+  • Implemented robust authorization and authentication mechanisms using Casbin and Auth.js, ensuring secure access and data integrity
+  • Containerized application using Docker for consistent deployments across development, testing, and production environments
+  • Implemented CI/CD pipelines using Azure DevOps for automated builds, testing, and deployments
+  • Mentored co-op students on full-stack development, DevOps, and secure coding best practices
+
+SOFTWARE DEVELOPER
+RCAF Association - Trenton, Ontario (On-site)
+January 2024 - June 2024
+
+  • Built and delivered Excel-based aircraft maintenance planning system using VBA within 6-month timeframe, serving as key team member and primary developer
+  • Conducted research with military stakeholders and public servants to identify appropriate IT solution for maintenance scheduling optimization
+  • Translated complex aviation business logic into performant VBA code, collaborating with stakeholders to integrate maintenance protocols and regulatory standards
+  • Optimized scheduling algorithms through algorithmic enhancements and code refactoring, significantly minimizing aircraft downtime and operational costs
+  • Successfully delivered project on schedule, earning positive feedback from both military operators and civilian administrators
+
+================================================================================
+EDUCATION
+================================================================================
+
+BACHELOR OF SCIENCE, COMPUTER SCIENCE
+Ontario Tech University - Oshawa, Ontario
+Graduated: April 2022
+
+================================================================================
+TECHNICAL SKILLS
+================================================================================
+
+Languages & Frameworks:
+JavaScript, TypeScript, Vue.js, React, AngularJS, Node.js, Express, VBA
+
+Database Technologies:
+PostgreSQL, AWS RDS, Database Design, Entity-Relationship Modeling
+
+Cloud & Infrastructure:
+AWS (Lambda, Amplify, Cognito, RDS), Docker, CI/CD Pipelines
+
+Development Tools:
+Azure DevOps, Git, Agile/Scrum, Jest, UML Modeling
+
+Security & Auth:
+Casbin, Auth.js, Prowler, AWS Security Best Practices
+
+Real-time & Visualization:
+Socket.io, LeafletJS, Data Visualization
+
+================================================================================
+KEY COMPETENCIES
+================================================================================
+
+System Development Life Cycles • Object-Oriented Programming • Database Architecture & Migration • Security Implementation • Full-Stack Development • Stakeholder Communication • Code Refactoring & Optimization • Technical Documentation
+`;
+
+    const blob = new Blob([textContent], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "Andrew_Murdoch_Resume.txt";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
+
   return (
     <div className="resumeWrapper">
       <div className="resumeControls no-print">
@@ -98,8 +194,33 @@ function Resume() {
           </svg>
           Export to PDF
         </button>
+        <button
+          className="exportButton"
+          onClick={handleExportText}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M14 2v6h6M16 13H8M16 17H8M10 9H8"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+          Export to Text
+        </button>
       </div>
       <div ref={printRef} className="resumeContainer">
+        {/* Rest of your resume content remains the same */}
         <header className="resumeHeader">
           <div className="profileImage">
             <img src="/me.jpg" alt="Andrew Murdoch" />
