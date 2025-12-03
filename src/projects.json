@@ -1,6 +1,5 @@
 {
   "MyGolfr": {
-    "link": "https://ec2-18-220-49-19.us-east-2.compute.amazonaws.com/",
     "posterImg": "/assets/MyGolfr/MyGolfrHome.png",
     "images": [
       "/assets/MyGolfr/MyGolfrHome.png",
@@ -19,22 +18,6 @@
       "Node.js",
       "GoogleMapsAPI",
       "AWS"
-    ]
-  },
-  "Amazon Clone": {
-    "link": "https://clone-c3600.web.app/",
-    "posterImg": "/assets/AmazonClone/AmazonCloneHome.png",
-    "images": [
-      "/assets/AmazonClone/AmazonCloneHome.png",
-      "/assets/AmazonClone/2.png",
-      "/assets/AmazonClone/3.png"
-    ],
-    "desc": "E-Commerce website with themes inspired by Amazon.com",
-    "stack": [
-      "React",
-      "JS",
-      "Firebase",
-      "Stripe"
     ]
   }
 }

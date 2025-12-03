@@ -1,10 +1,10 @@
-import React from "react";
 import "./Contact.scss";
 import { useDispatch } from "react-redux";
 import { setVariant, reset } from "../../redux/cursor";
+import { Link } from "react-router-dom";
 
 function Contact() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   return (
     <div>
@@ -49,6 +49,24 @@ function Contact() {
         </svg>
         github.com/AndrewMurdoch28
       </a>
+      <Link
+        to="/resume"
+        onMouseEnter={() => {
+          dispatch(setVariant("hover"));
+        }}
+        onMouseLeave={() => {
+          dispatch(reset());
+        }}
+        className="contactLink"
+      >
+        <svg viewBox="0 0 24 24">
+          <path
+            fill="purple"
+            d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm4 18H6V4h7v5h5v11zm-1-7H7v-2h10v2zm0 4H7v-2h10v2z"
+          />
+        </svg>
+        View Resume
+      </Link>
     </div>
   );
 }

@@ -1,10 +1,11 @@
 import { useEffect, useState, useRef, useCallback } from "react";
 import { useSelector } from "react-redux";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import Delaunay from "delaunay-fast";
 import Header from "./components/Header/Header";
 import ScrollLine from "./components/ScrollLine/scrollLine";
 import ProjectPage from "./components/ProjectPage/ProjectPage";
+import Resume from "./components/Resume/Resume";
 import "./App.scss";
 
 const STAR_CONFIG = {
@@ -47,93 +48,18 @@ const CURSOR_CONFIG = {
   cursorSmoothing: 5,
 };
 
-function App() {
-  const { variant } = useSelector((state) => state.cursor);
-  const { animationState } = useSelector((state) => state.animation);
-
-  const [coords, setCoords] = useState({ x: 0, y: 0 });
-
-  const cursorInnerRef = useRef(null);
-  const cursorOuterRef = useRef(null);
-  const requestRef = useRef(null);
-  const previousTimeRef = useRef(null);
-  const offsetRef = useRef(CURSOR_CONFIG.defaultOffset);
-  const endXRef = useRef(0);
-  const endYRef = useRef(0);
-
-  const mouseMoveHandler = useCallback(({ clientX, clientY }) => {
-    setCoords({ x: clientX, y: clientY });
-
-    if (cursorInnerRef.current) {
-      cursorInnerRef.current.style.top = `${clientY}px`;
-      cursorInnerRef.current.style.left = `${clientX}px`;
-    }
-
-    endXRef.current = clientX;
-    endYRef.current = clientY;
-  }, []);
-
-  const animateOuterCursor = useCallback(
-    (time) => {
-      if (previousTimeRef.current !== undefined) {
-        const newCoords = {
-          x:
-            coords.x +
-            (endXRef.current - coords.x) / CURSOR_CONFIG.cursorSmoothing,
-          y:
-            coords.y +
-            (endYRef.current - coords.y) / CURSOR_CONFIG.cursorSmoothing,
-        };
-
-        setCoords(newCoords);
-
-        const targetOffset =
-          variant === "default"
-            ? CURSOR_CONFIG.defaultOffset
-            : CURSOR_CONFIG.hoverOffset;
-
-        offsetRef.current +=
-          (targetOffset - offsetRef.current) / CURSOR_CONFIG.smoothing;
-
-        if (cursorOuterRef.current) {
-          cursorOuterRef.current.style.top = `${
-            newCoords.y - offsetRef.current
-          }px`;
-          cursorOuterRef.current.style.left = `${
-            newCoords.x - offsetRef.current
-          }px`;
-        }
-      }
-
-      previousTimeRef.current = time;
-      requestRef.current = requestAnimationFrame(animateOuterCursor);
-    },
-    [coords, variant]
-  );
-
-  useEffect(() => {
-    requestRef.current = requestAnimationFrame(animateOuterCursor);
-    return () => {
-      if (requestRef.current) {
-        cancelAnimationFrame(requestRef.current);
-      }
-    };
-  }, [animateOuterCursor]);
-
+function StarsBackground() {
   useEffect(() => {
     const canvas = document.getElementById("stars");
     if (!canvas) return;
-
     const context = canvas.getContext("2d");
     const mouse = { x: 0, y: 0 };
     const c = 1000;
-
     let n = 0;
     const nAngle = (Math.PI * 2) / STAR_CONFIG.noiseLength;
     const nRad = 100;
     const nScale = 0.5;
     let nPos = { x: 0, y: 0 };
-
     const points = [];
     let vertices = [];
     const triangles = [];
@@ -193,7 +119,6 @@ function App() {
           context.fill();
           context.closePath();
         }
-
         context.globalAlpha = 1;
       }
     }
@@ -213,7 +138,6 @@ function App() {
           (this.z * STAR_CONFIG.flareSizeMultiplier +
             STAR_CONFIG.flareSizeBase) *
           (sizeRatio() / 1000);
-
         context.beginPath();
         context.globalAlpha = this.opacity;
         context.arc(pos.x, pos.y, r, 0, 2 * Math.PI, false);
@@ -238,11 +162,9 @@ function App() {
 
       render() {
         let points;
-
         switch (this.stage) {
           case 0:
             const last = particles[this.verts[this.verts.length - 1]];
-
             if (last?.neighbors?.length > 0) {
               const neighbor =
                 last.neighbors[random(0, last.neighbors.length - 1)];
@@ -253,7 +175,6 @@ function App() {
               this.stage = 3;
               this.finished = true;
             }
-
             if (this.verts.length >= this.length) {
               for (let i = 0; i < this.verts.length - 1; i++) {
                 const p1 = particles[this.verts[i]];
@@ -270,25 +191,21 @@ function App() {
           case 1:
             if (this.distances.length > 0) {
               points = [];
-
               for (let i = 0; i < this.linked.length; i++) {
                 const p = particles[this.linked[i]];
                 const pos = position(p.x, p.y, p.z);
                 points.push([pos.x, pos.y]);
               }
-
               const linkSpeedRel =
                 STAR_CONFIG.linkSpeed * 0.00001 * canvas.width;
               this.traveled += linkSpeedRel;
               const d = this.distances[this.linked.length - 1];
-
               if (this.traveled >= d) {
                 this.traveled = 0;
                 this.linked.push(this.verts[this.linked.length]);
                 const p = particles[this.linked[this.linked.length - 1]];
                 const pos = position(p.x, p.y, p.z);
                 points.push([pos.x, pos.y]);
-
                 if (this.linked.length >= this.verts.length) {
                   this.stage = 2;
                 }
@@ -302,7 +219,6 @@ function App() {
                 const pos = position(x, y, z);
                 points.push([pos.x, pos.y]);
               }
-
               this.drawLine(points);
             } else {
               this.stage = 3;
@@ -318,13 +234,11 @@ function App() {
                 const alpha =
                   (1 - this.fade / STAR_CONFIG.linkFade) *
                   STAR_CONFIG.linkOpacity;
-
                 for (let i = 0; i < this.verts.length; i++) {
                   const p = particles[this.verts[i]];
                   const pos = position(p.x, p.y, p.z);
                   points.push([pos.x, pos.y]);
                 }
-
                 this.drawLine(points, alpha);
               } else {
                 this.stage = 3;
@@ -347,12 +261,10 @@ function App() {
         if (points.length > 1 && alpha > 0) {
           context.globalAlpha = alpha;
           context.beginPath();
-
           for (let i = 0; i < points.length - 1; i++) {
             context.moveTo(points[i][0], points[i][1]);
             context.lineTo(points[i + 1][0], points[i + 1][1]);
           }
-
           context.strokeStyle = STAR_CONFIG.color;
           context.lineWidth = STAR_CONFIG.lineWidth;
           context.stroke();
@@ -367,7 +279,6 @@ function App() {
       const cosA = Math.cos(a);
       const sinA = Math.sin(a);
       const rad = nRad;
-
       return { x: rad * cosA, y: rad * sinA };
     }
 
@@ -435,16 +346,13 @@ function App() {
         context.beginPath();
         for (let v = 0; v < vertices.length - 1; v++) {
           if ((v + 1) % 3 === 0) continue;
-
           const p1 = particles[vertices[v]];
           const p2 = particles[vertices[v + 1]];
           const pos1 = position(p1.x, p1.y, p1.z);
           const pos2 = position(p2.x, p2.y, p2.z);
-
           context.moveTo(pos1.x, pos1.y);
           context.lineTo(pos2.x, pos2.y);
         }
-
         context.strokeStyle = STAR_CONFIG.color;
         context.lineWidth = STAR_CONFIG.lineWidth;
         context.stroke();
@@ -460,7 +368,6 @@ function App() {
           const start = random(0, particles.length - 1);
           startLink(start, length);
         }
-
         for (let l = links.length - 1; l >= 0; l--) {
           if (links[l] && !links[l].finished) {
             links[l].render();
@@ -485,6 +392,7 @@ function App() {
         ((callback) => window.setTimeout(callback, 1000 / 60));
 
       resize();
+
       mouse.x = canvas.clientWidth / 2;
       mouse.y = canvas.clientHeight / 2;
 
@@ -557,32 +465,115 @@ function App() {
     init();
   }, []);
 
+  return <canvas id="stars"></canvas>;
+}
+
+function AppContent() {
+  const location = useLocation();
+  const { variant } = useSelector((state) => state.cursor);
+  const { animationState } = useSelector((state) => state.animation);
+  const [coords, setCoords] = useState({ x: 0, y: 0 });
+  const cursorInnerRef = useRef(null);
+  const cursorOuterRef = useRef(null);
+  const requestRef = useRef(null);
+  const previousTimeRef = useRef(null);
+  const offsetRef = useRef(CURSOR_CONFIG.defaultOffset);
+  const endXRef = useRef(0);
+  const endYRef = useRef(0);
+
+  const isResumePage = location.pathname === "/resume";
+
+  const mouseMoveHandler = useCallback(({ clientX, clientY }) => {
+    setCoords({ x: clientX, y: clientY });
+    if (cursorInnerRef.current) {
+      cursorInnerRef.current.style.top = `${clientY}px`;
+      cursorInnerRef.current.style.left = `${clientX}px`;
+    }
+    endXRef.current = clientX;
+    endYRef.current = clientY;
+  }, []);
+
+  const animateOuterCursor = useCallback(
+    (time) => {
+      if (previousTimeRef.current !== undefined) {
+        const newCoords = {
+          x:
+            coords.x +
+            (endXRef.current - coords.x) / CURSOR_CONFIG.cursorSmoothing,
+          y:
+            coords.y +
+            (endYRef.current - coords.y) / CURSOR_CONFIG.cursorSmoothing,
+        };
+        setCoords(newCoords);
+
+        const targetOffset =
+          variant === "default"
+            ? CURSOR_CONFIG.defaultOffset
+            : CURSOR_CONFIG.hoverOffset;
+        offsetRef.current +=
+          (targetOffset - offsetRef.current) / CURSOR_CONFIG.smoothing;
+
+        if (cursorOuterRef.current) {
+          cursorOuterRef.current.style.top = `${
+            newCoords.y - offsetRef.current
+          }px`;
+          cursorOuterRef.current.style.left = `${
+            newCoords.x - offsetRef.current
+          }px`;
+        }
+      }
+      previousTimeRef.current = time;
+      requestRef.current = requestAnimationFrame(animateOuterCursor);
+    },
+    [coords, variant]
+  );
+
+  useEffect(() => {
+    requestRef.current = requestAnimationFrame(animateOuterCursor);
+    return () => {
+      if (requestRef.current) {
+        cancelAnimationFrame(requestRef.current);
+      }
+    };
+  }, [animateOuterCursor]);
+
+  return (
+    <div className="app" onMouseMove={mouseMoveHandler}>
+      {!isResumePage && <StarsBackground />}
+      {!isResumePage && (
+        <div className={animationState ? "screenCover" : ""}></div>
+      )}
+      {!isResumePage && (
+        <div className={animationState ? "innerScreenCover" : ""}></div>
+      )}
+      <div ref={cursorInnerRef} className="insideCircle"></div>
+      <div
+        ref={cursorOuterRef}
+        className={`outsideCircle ${
+          variant === "default" ? "default" : "hover"
+        }`}
+      />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <Header />
+              <ScrollLine />
+            </>
+          }
+        />
+        <Route path="/projects/:id" element={<ProjectPage />} />
+        <Route path="/resume" element={<Resume />} />
+      </Routes>
+    </div>
+  );
+}
+
+function App() {
   return (
     <BrowserRouter>
-      <div className="app" onMouseMove={mouseMoveHandler}>
-        <canvas id="stars"></canvas>
-        <div className={animationState ? "screenCover" : ""}></div>
-        <div className={animationState ? "innerScreenCover" : ""}></div>
-        <div ref={cursorInnerRef} className="insideCircle"></div>
-        <div
-          ref={cursorOuterRef}
-          className={`outsideCircle ${
-            variant === "default" ? "default" : "hover"
-          }`}
-        />
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <>
-                <Header />
-                <ScrollLine />
-              </>
-            }
-          />
-          <Route path="/projects/:id" element={<ProjectPage />} />
-        </Routes>
-      </div>
+      <AppContent />
     </BrowserRouter>
   );
 }

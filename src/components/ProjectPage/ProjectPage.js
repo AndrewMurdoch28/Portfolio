@@ -49,26 +49,32 @@ function ProjectPage() {
           </div>
           <h1 className="projectTitle">{title}</h1>
           <p className="projectDesc">{Projects[title].desc}</p>
-          <div className="visitBtnContainer">
-            <div ref={visitBackgroundRef} className="visitBtnBackground"></div>
-            <Link to={Projects[title].link} target={"_blank"}>
+          {Projects[title].link && (
+            <div className="visitBtnContainer">
               <div
-                className="visitBtn"
-                onMouseEnter={() => {
-                  dispatch(setVariant("hover"));
-                  visitBackgroundRef.current.style.backgroundPosition = "100%";
-                  visitBackgroundRef.current.style.transform = "scale(1.2)";
-                }}
-                onMouseLeave={() => {
-                  dispatch(reset());
-                  visitBackgroundRef.current.style.backgroundPosition = "0%";
-                  visitBackgroundRef.current.style.transform = "scale(1)";
-                }}
-              >
-                Visit
-              </div>
-            </Link>
-          </div>
+                ref={visitBackgroundRef}
+                className="visitBtnBackground"
+              ></div>
+              <Link to={Projects[title].link} target={"_blank"}>
+                <div
+                  className="visitBtn"
+                  onMouseEnter={() => {
+                    dispatch(setVariant("hover"));
+                    visitBackgroundRef.current.style.backgroundPosition =
+                      "100%";
+                    visitBackgroundRef.current.style.transform = "scale(1.2)";
+                  }}
+                  onMouseLeave={() => {
+                    dispatch(reset());
+                    visitBackgroundRef.current.style.backgroundPosition = "0%";
+                    visitBackgroundRef.current.style.transform = "scale(1)";
+                  }}
+                >
+                  Visit
+                </div>
+              </Link>
+            </div>
+          )}
         </div>
         <div className="numLine">
           {Object.keys(Projects).forEach((value, index) => {
@@ -80,7 +86,11 @@ function ProjectPage() {
       <div className="leftSideView">
         {Projects[title].images.map((imgSrc, index) => {
           return (
-            <LoadingImg img={imgSrc} isInit={true} isLoaded={() => {}}></LoadingImg>
+            <LoadingImg
+              img={imgSrc}
+              isInit={true}
+              isLoaded={() => {}}
+            ></LoadingImg>
           );
         })}
       </div>

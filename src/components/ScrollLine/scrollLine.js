@@ -29,24 +29,20 @@ const ANIMATION_CONFIG = {
 function ScrollLine() {
   const { scroll } = useSelector((state) => state.scroll);
   const dispatch = useDispatch();
-
   const startSectionRef = useRef(null);
   const [animationStates, setAnimationStates] = useState({
     line1: false,
     line2: false,
     line3: false,
   });
-
   const projectEntries = useMemo(() => Object.entries(Projects), []);
 
   const handleScroll = useCallback(() => {
     if (!startSectionRef.current) return;
-
     const rect = startSectionRef.current.getBoundingClientRect();
     const isInView =
       rect.top - window.innerHeight + ANIMATION_CONFIG.initOffset <= 0 &&
       rect.top >= -ANIMATION_CONFIG.initOffset;
-
     if (isInView && !animationStates.line1) {
       setTimeout(() => {
         setAnimationStates((prev) => ({ ...prev, line1: true }));
@@ -64,7 +60,6 @@ function ScrollLine() {
     window.scrollTo(0, scroll);
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
-
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
@@ -73,7 +68,6 @@ function ScrollLine() {
   const navigateToWork = useCallback(() => {
     const workSectionEl = document.getElementById("workSectionContainer");
     if (!workSectionEl) return;
-
     const sectionTop =
       workSectionEl.getBoundingClientRect().top +
       window.scrollY +
@@ -107,7 +101,6 @@ function ScrollLine() {
         </svg>
         <h3>SCROLL</h3>
       </div>
-
       <div className="scrollLine">
         <Section
           id="startSectionContainer"
@@ -125,7 +118,6 @@ function ScrollLine() {
                 Hi, my name is <span>Andrew Murdoch</span>
               </h1>
             </AnimatedTextBlock>
-
             <AnimatedTextBlock
               isAnimated={animationStates.line2}
               animationClass="coverAnimation1"
@@ -134,7 +126,6 @@ function ScrollLine() {
             >
               <h1>I like to design and develop software</h1>
             </AnimatedTextBlock>
-
             <AnimatedTextBlock
               isAnimated={animationStates.line3}
               animationClass="coverAnimation2"
@@ -145,7 +136,6 @@ function ScrollLine() {
             </AnimatedTextBlock>
           </div>
         </Section>
-
         <Section id="workSectionContainer" title="Work">
           <div className="sectionContent flex">
             {projectEntries.map(([title, data], index) => (
@@ -158,19 +148,16 @@ function ScrollLine() {
             ))}
           </div>
         </Section>
-
         <Section id="aboutSectionContainer" title="About">
           <div className="sectionContent">
             <About />
           </div>
         </Section>
-
         <Section id="contactSectionContainer" title="Contact">
           <div className="sectionContent">
             <Contact />
           </div>
         </Section>
-
         <footer className="property">
           © Made with
           <svg width={17} height={17} viewBox="0 0 20 20">
@@ -179,7 +166,7 @@ function ScrollLine() {
               d="M5.719 14.75c-0.236 0-0.474-0.083-0.664-0.252l-5.060-4.498 5.341-4.748c0.412-0.365 1.044-0.33 1.411 0.083s0.33 1.045-0.083 1.412l-3.659 3.253 3.378 3.002c0.413 0.367 0.45 0.999 0.083 1.412-0.197 0.223-0.472 0.336-0.747 0.336zM14.664 14.748l5.341-4.748-5.060-4.498c-0.413-0.367-1.045-0.33-1.411 0.083s-0.33 1.045 0.083 1.412l3.378 3.003-3.659 3.252c-0.413 0.367-0.45 0.999-0.083 1.412 0.197 0.223 0.472 0.336 0.747 0.336 0.236 0 0.474-0.083 0.664-0.252zM9.986 16.165l2-12c0.091-0.545-0.277-1.060-0.822-1.151-0.547-0.092-1.061 0.277-1.15 0.822l-2 12c-0.091 0.545 0.277 1.060 0.822 1.151 0.056 0.009 0.11 0.013 0.165 0.013 0.48 0 0.904-0.347 0.985-0.835z"
             />
           </svg>
-          by Andrew Murdoch. Circa 2023.
+          by Andrew Murdoch. Circa 2023.{" "}
         </footer>
       </div>
     </div>
