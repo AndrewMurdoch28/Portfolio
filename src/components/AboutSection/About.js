@@ -16,7 +16,7 @@ function About() {
     }, UPDATE_RATE);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [DATE_OF_BIRTH]);
 
   const skills = [
     'JavaScript', 'TypeScript', 'Vue.js', 'React', 'AngularJS', 'Node.js', 

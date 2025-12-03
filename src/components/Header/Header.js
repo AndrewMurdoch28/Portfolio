@@ -59,7 +59,7 @@ function Header() {
     const updateScrollDirection = () => {
       const scrollY = window.scrollY;
 
-      if (scrollY == 0) {
+      if (scrollY === 0) {
         setShade(false);
       } else {
         setShade(true);
@@ -113,14 +113,24 @@ function Header() {
     return () => {
       window.removeEventListener("scroll", updateScrollDirection);
     };
-  }, [scrollDirection]);
+  }, [
+    aboutSectionEl,
+    body.offsetHeight,
+    body.scrollHeight,
+    html.clientHeight,
+    html.offsetHeight,
+    html.scrollHeight,
+    workSectionEl,
+    yOffset,
+    scrollDirection,
+  ]);
 
   return (
     <div
       id="header"
       className="header"
       style={{
-        top: !dropdownHeader && scrollDirection == "down" ? "-55px" : "0px",
+        top: !dropdownHeader && scrollDirection === "down" ? "-55px" : "0px",
         height:
           window.innerWidth < 800 ? (dropdownHeader ? "280px" : "0px") : "55px",
       }}
@@ -170,7 +180,7 @@ function Header() {
       >
         <div
           style={
-            selectedSection == "Start"
+            selectedSection === "Start"
               ? { color: "#f9f9f9" }
               : { color: "rgb(179, 175, 175)" }
           }
@@ -184,7 +194,7 @@ function Header() {
         </div>
         <div
           style={
-            selectedSection == "Work"
+            selectedSection === "Work"
               ? { color: "#f9f9f9" }
               : { color: "rgb(179, 175, 175)" }
           }
@@ -198,7 +208,7 @@ function Header() {
         </div>
         <div
           style={
-            selectedSection == "About"
+            selectedSection === "About"
               ? { color: "#f9f9f9" }
               : { color: "rgb(179, 175, 175)" }
           }
@@ -212,7 +222,7 @@ function Header() {
         </div>
         <div
           style={
-            selectedSection == "Contact"
+            selectedSection === "Contact"
               ? { color: "#f9f9f9" }
               : { color: "rgb(179, 175, 175)" }
           }

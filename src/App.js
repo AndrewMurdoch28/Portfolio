@@ -58,7 +58,6 @@ function StarsBackground() {
     let n = 0;
     const nAngle = (Math.PI * 2) / STAR_CONFIG.noiseLength;
     const nRad = 100;
-    const nScale = 0.5;
     let nPos = { x: 0, y: 0 };
     const points = [];
     let vertices = [];

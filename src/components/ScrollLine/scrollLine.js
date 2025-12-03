@@ -8,7 +8,6 @@ import {
 } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setVariant, reset } from "../../redux/cursor";
-import { setScroll } from "../../redux/scroll";
 import { scrollTo } from "../../utils/functions";
 import Project from "../Project/Project";
 import About from "../AboutSection/About";
